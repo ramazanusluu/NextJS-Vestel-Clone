@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import headerLogo from "../../public/images/header-logo.png";
 import Image from "next/image";
+import Link from "next/link";
 import MobileNav from "../Navbar/MobileNav/MobileNav";
 
 function Header() {
@@ -9,9 +10,16 @@ function Header() {
     <div>
       <nav className="navbar navbar-expand-xl">
         <div className="container">
-          <span className="navbar-brand header-image me-auto img-fluid">
-            <Image src={headerLogo} alt="vestel-logo" height={35} width={140} />
-          </span>
+          <Link href="/">
+            <a className="navbar-brand header-image me-auto">
+              <Image
+                src={headerLogo}
+                alt="vestel-logo"
+                height={35}
+                width={140}
+              />
+            </a>
+          </Link>
           {/* Mobil ekranlarda görünen ara butonu */}
           <button
             id="btn-search"

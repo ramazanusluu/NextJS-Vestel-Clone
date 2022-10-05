@@ -91,17 +91,19 @@ function DesktopNav() {
                 {item.SubCategoryList.map((subItem, subKey) => (
                   <ul key={subKey} className="nav flex-column">
                     <li className="nav-item">
-                      <span
-                        className={
-                          altSelected === subKey
-                            ? "nav-link dropdown-list dropdown-list-hover "
-                            : "nav-link dropdown-list"
-                        }
-                        onMouseEnter={() => altToggle(subKey)}
-                      >
-                        <i className="list-item fa-solid fa-chevron-right"></i>{" "}
-                        {subItem.DisplayName}
-                      </span>
+                      <Link href={`/category/products/${subItem.ID}`}>
+                        <span
+                          className={
+                            altSelected === subKey
+                              ? "nav-link dropdown-list dropdown-list-hover "
+                              : "nav-link dropdown-list"
+                          }
+                          onMouseEnter={() => altToggle(subKey)}
+                        >
+                          <i className="list-item fa-solid fa-chevron-right"></i>{" "}
+                          {subItem.DisplayName}
+                        </span>
+                      </Link>
                       {subItem.SubCategoryList.length > 0 && (
                         <div
                           onMouseLeave={() => altToggleLeave(subKey)}
@@ -114,9 +116,11 @@ function DesktopNav() {
                           {subItem.SubCategoryList &&
                             subItem.SubCategoryList.map((altItem, altKey) => (
                               <ul key={altKey}>
-                                <li className="alt-sub-list">
-                                  {altItem.DisplayName}
-                                </li>
+                                <Link href={`/category/products/${altItem.ID}`}>
+                                  <li className="alt-sub-list">
+                                    {altItem.DisplayName}
+                                  </li>
+                                </Link>
                               </ul>
                             ))}
                         </div>

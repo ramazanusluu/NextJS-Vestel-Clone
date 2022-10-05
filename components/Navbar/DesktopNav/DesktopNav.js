@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Loading from "../../Loading/Loading";
 
@@ -63,9 +64,11 @@ function DesktopNav() {
                     onMouseEnter={() => toggle(key)}
                   >
                     {item.ID < 11 && (
-                      <span className="nav-link menu-link">
-                        {item.DisplayName}
-                      </span>
+                      <Link href={`/category/${item.ID}`}>
+                        <span className="nav-link menu-link">
+                          {item.DisplayName}
+                        </span>
+                      </Link>
                     )}
                   </li>
                 ))}

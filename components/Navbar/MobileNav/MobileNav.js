@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Loading from "../../Loading/Loading";
 
@@ -53,9 +54,13 @@ function MobileNav() {
               <div key={key}>
                 {item.ID < 11 && (
                   <div className={selected === key ? "item show" : "item"}>
-                    <div className="title" onClick={() => toggle(key)}>
-                      <h2>{item.DisplayName}</h2>
-                      <span>{selected === key ? "-" : " +"}</span>
+                    <div className="title">
+                      <Link href={`/category/${item.ID}`}>
+                        <h2 className="mobil-menu-title">{item.DisplayName}</h2>
+                      </Link>
+                      <span onClick={() => toggle(key)}>
+                        {selected === key ? "-" : " +"}
+                      </span>
                     </div>
                     {item.SubCategoryList.map((subItem, subKey) => (
                       <div

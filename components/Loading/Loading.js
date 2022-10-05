@@ -2,8 +2,10 @@ import React from "react";
 
 function Loading() {
   return (
-    <div>
-      <h1>Loading Component</h1>
+    <div className="container">
+      <div className="loading">
+        <div className="loader"></div>
+      </div>
     </div>
   );
 }

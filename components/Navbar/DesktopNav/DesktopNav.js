@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Loading from "../../Loading/Loading";
 
 function DesktopNav() {
   const [data, setData] = useState(null);
@@ -14,7 +15,7 @@ function DesktopNav() {
       });
   }, []);
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <Loading />;
   if (!data) return <p>No profile data</p>;
 
   console.log(data);

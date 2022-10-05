@@ -12,12 +12,15 @@ export default function SubCategory({ subCategory }) {
           name="description"
           content={subCategory.Result.Category.MetaDescription}
         />
-        <meta name="keywords" content={subCategory.Result.Category.MetaKeywords} />
+        <meta
+          name="keywords"
+          content={subCategory.Result.Category.MetaKeywords}
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container my-5">
         <div className="row">
-          <h5 className="display-6 text-center">
+          <h5 className="display-6 text-center mt-sm-5 mt-xl-0">
             {subCategory.Result.CategoryName}
           </h5>
           {subCategory.Result.TopCategory.SubCategoryList.map((item, key) => (

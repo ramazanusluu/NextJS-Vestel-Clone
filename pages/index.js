@@ -10,6 +10,7 @@ export default function Home() {
       </Head>
       <div>
         <h1>Next.js</h1>
+        <button className="btn btn-primary">React</button>
       </div>
     </div>
   );

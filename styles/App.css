@@ -382,6 +382,7 @@
 }
 .mobil-sub-category {
   color: #3b3b3b;
+  list-style-type: none;
 }
 .mobil-sub-category:hover {
   color: #df2027;

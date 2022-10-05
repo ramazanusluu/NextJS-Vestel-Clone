@@ -5,12 +5,19 @@ function MobileNav() {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [selected, setSelected] = useState(null);
+  const [altSelected, setAltSelected] = useState(null);
 
   const toggle = (key) => {
     if (selected === key) {
       return setSelected(null);
     }
     setSelected(key);
+  };
+  const subToggle = (i) => {
+    if (altSelected === i) {
+      return setAltSelected(null);
+    }
+    setAltSelected(i);
   };
   useEffect(() => {
     setLoading(true);
@@ -62,10 +69,19 @@ function MobileNav() {
 
                         {subItem.SubCategoryList.length > 0 && (
                           <>
-                            <span className="float-end sub-info">
-                              {selected === key ? "-" : " +"}
+                            <span
+                              onClick={() => subToggle(subKey)}
+                              className="float-end sub-info"
+                            >
+                              {altSelected === subKey ? "-" : " +"}
                             </span>
-                            <div className="sub-content">
+                            <div
+                              className={
+                                altSelected === subKey
+                                  ? "sub-content-show"
+                                  : "sub-content"
+                              }
+                            >
                               {subItem.SubCategoryList &&
                                 subItem.SubCategoryList.map(
                                   (altItem, altKey) => (

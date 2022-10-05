@@ -54,9 +54,31 @@ function MobileNav() {
                     {item.SubCategoryList.map((subItem, subKey) => (
                       <div
                         key={subKey}
-                        className={selected === key ? "content show" : "content"}
+                        className={
+                          selected === key ? "content show" : "content"
+                        }
                       >
-                        {subItem.DisplayName}
+                        <span>{subItem.DisplayName}</span>
+
+                        {subItem.SubCategoryList.length > 0 && (
+                          <>
+                            <span className="float-end sub-info">
+                              {selected === key ? "-" : " +"}
+                            </span>
+                            <div className="sub-content">
+                              {subItem.SubCategoryList &&
+                                subItem.SubCategoryList.map(
+                                  (altItem, altKey) => (
+                                    <ul key={altKey}>
+                                      <li className="mobil-sub-category">
+                                        {altItem.DisplayName}
+                                      </li>
+                                    </ul>
+                                  )
+                                )}
+                            </div>
+                          </>
+                        )}
                       </div>
                     ))}
                   </div>

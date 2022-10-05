@@ -27,8 +27,41 @@ function MobileNav() {
 
   console.log(data);
   return (
-    <div>
-      <h1>MobileNav component</h1>
+    <div className="d-xl-none d-block">
+      <div className="mobil-menubar">
+        <div className="mobil-auth">
+          <ul className="nav justify-content-center mx-4">
+            <li className="nav-item header-item">
+              <span className="nav-link mobil-header-link first-element">
+                YENİ ÜYE
+              </span>
+            </li>
+            <li className="nav-item header-item">
+              <span className="nav-link mobil-header-link">ÜYE GİRİŞİ</span>
+            </li>
+          </ul>
+        </div>
+        <div className="wrapper">
+          <div className="accordion">
+            {data.Result.TreeList.map((item, key) => (
+              <div key={key} className="item">
+                <div className="title" onClick={() => toggle(key)}>
+                  <h2>{item.DisplayName}</h2>
+                  <span>{selected === key ? "-" : " +"}</span>
+                </div>
+                {item.SubCategoryList.map((subItem, subKey) => (
+                  <div
+                    key={subKey}
+                    className={selected === key ? "content show" : "content"}
+                  >
+                    {subItem.DisplayName}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

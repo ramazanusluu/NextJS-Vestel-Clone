@@ -1,6 +1,7 @@
 import Head from "next/head";
 
-export default function Home() {
+export default function Home({category}) {
+  console.log("category", category);
   return (
     <>
       <Head>
@@ -14,3 +15,15 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = async () => {
+  const res = await fetch(
+    "https://store.vrunibex.com/mobile2/mbProduct/CategoryList"
+  );
+  const category = await res.json();
+  return {
+    props: {
+      category,
+    },
+  };
+};

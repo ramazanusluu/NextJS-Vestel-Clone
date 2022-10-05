@@ -4,6 +4,9 @@
   background: #ffffff;
   min-height: 68px;
 }
+.me-auto {
+  padding-bottom: 0 !important;
+}
 .desktop-menu {
   margin-top: 66px;
 }

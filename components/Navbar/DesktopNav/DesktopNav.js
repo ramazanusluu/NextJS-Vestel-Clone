@@ -45,7 +45,6 @@ function DesktopNav() {
   if (isLoading) return <Loading />;
   if (!data) return <p>No profile data</p>;
 
-  console.log(data);
   return (
     <>
       <nav className="bg-danger d-none d-xl-block">

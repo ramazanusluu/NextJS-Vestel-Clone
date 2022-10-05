@@ -71,7 +71,7 @@ function DesktopNav() {
         >
           <div className="container">
             <div className="row">
-              <div className="col-sm-3">
+              <div className="col-sm-3 sub-menu">
                 {item.SubCategoryList.map((subItem, subKey) => (
                   <ul key={subKey} className="nav flex-column">
                     <li className="nav-item">

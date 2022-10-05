@@ -5,7 +5,7 @@ import Image from "next/image";
 function Header() {
   return (
     <div>
-      <nav className="navbar navbar-expand-xl fixed-top">
+      <nav className="navbar navbar-expand-xl">
         <div className="container">
           <span className="navbar-brand header-image me-auto img-fluid">
             <Image src={headerLogo} alt="vestel-logo" height={35} width={140} />

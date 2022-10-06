@@ -5,9 +5,11 @@ import axios from "axios";
 import { object, string } from "yup";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function login() {
   const router = useRouter();
+  const { login } = useAuth();
   return (
     <>
       <Head>
@@ -50,6 +52,7 @@ export default function login() {
                         }
                       );
                       router.push("/");
+                      login(response.data);
                     } else {
                       toast.warn(`${response.data.Message}`, {
                         position: "bottom-right",

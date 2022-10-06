@@ -38,14 +38,18 @@ function MobileNav() {
       <div className="mobil-menubar">
         <div className="mobil-auth">
           <ul className="nav justify-content-center mx-4">
-            <li className="nav-item header-item">
-              <span className="nav-link mobil-header-link first-element">
-                YENİ ÜYE
-              </span>
-            </li>
-            <li className="nav-item header-item">
-              <span className="nav-link mobil-header-link">ÜYE GİRİŞİ</span>
-            </li>
+            <Link href="/auth/register">
+              <li className="nav-item header-item">
+                <span className="nav-link mobil-header-link first-element">
+                  YENİ ÜYE
+                </span>
+              </li>
+            </Link>
+            <Link href="/auth/login">
+              <li className="nav-item header-item">
+                <span className="nav-link mobil-header-link">ÜYE GİRİŞİ</span>
+              </li>
+            </Link>
           </ul>
         </div>
         <div>

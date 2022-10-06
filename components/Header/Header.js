@@ -74,16 +74,20 @@ function Header() {
               </div>
             </div>
             <ul className="nav justify-content-center mx-4 d-none d-xl-block">
+              <Link href="/auth/register">
+                <li className="nav-item header-item">
+                  <a className="nav-link header-link first-element">
+                    YENİ ÜYE
+                  </a>
+                </li>
+              </Link>
+              <Link href="/auth/login">
               <li className="nav-item header-item">
-                <a className="nav-link header-link first-element" href="/">
-                  YENİ ÜYE
-                </a>
-              </li>
-              <li className="nav-item header-item">
-                <a className="nav-link header-link" href="/">
+                <a className="nav-link header-link" >
                   ÜYE GİRİŞİ
                 </a>
               </li>
+              </Link>
             </ul>
             <div className="d-none d-xl-block">
               <div className="position-relative">

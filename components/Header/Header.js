@@ -38,14 +38,15 @@ function Header() {
             </a>
           </Link>
           {/* Mobil ekranlarda görünen ara butonu */}
-          <button
-            id="btn-search"
-            className="btn d-xl-none d-block buton input-group-text"
-            onClick={() => setIsOpen(false)}
-          >
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </button>
-
+          <Link href="/search">
+            <button
+              id="btn-search"
+              className="btn d-xl-none d-block buton input-group-text"
+              onClick={() => setIsOpen(false)}
+            >
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </Link>
           {!isOpen && (
             <button
               id="btn-hamburger"
@@ -85,8 +86,13 @@ function Header() {
                   type="text"
                   className="form-control search"
                   placeholder="Ürün, kategori, servis, mağaza ara"
+                  onFocus={() => router.push("/search")}
+                  readOnly
                 />
-                <button className="btn btn-desktop-search input-group-text">
+                <button
+                  className="btn btn-desktop-search input-group-text"
+                  onClick={() => router.push("/search")}
+                >
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
               </div>

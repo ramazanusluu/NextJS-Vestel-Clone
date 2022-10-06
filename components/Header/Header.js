@@ -131,14 +131,16 @@ function Header() {
                 </div>
               </>
             )}
-            <div className="d-none d-xl-block">
-              <div className="position-relative">
-                <i className="fa-solid fa-basket-shopping"></i>
-                <span className="basket-items position-absolute top-100 start-100 translate-middle badge rounded-pill rounded-circle">
-                  0
-                </span>
+            <Link href="/card">
+              <div className="d-none d-xl-block">
+                <div className="position-relative">
+                  <i className="fa-solid fa-basket-shopping"></i>
+                  <span className="basket-items position-absolute top-100 start-100 translate-middle badge rounded-pill rounded-circle">
+                    0
+                  </span>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </nav>

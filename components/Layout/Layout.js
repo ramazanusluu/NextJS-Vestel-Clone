@@ -5,12 +5,12 @@ import DesktopNav from "../Navbar/DesktopNav/DesktopNav";
 
 function Layout({ children }) {
   return (
-    <>
+    <div>
       <ToastContainer />
       <Header />
       <DesktopNav />
       <div>{children}</div>
-    </>
+    </div>
   );
 }
 

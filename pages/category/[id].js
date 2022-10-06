@@ -20,7 +20,7 @@ export default function SubCategory({ subCategory }) {
       </Head>
       <div className="container my-5">
         <div className="row">
-          <h5 className="display-6 text-center mt-sm-5 mt-xl-0">
+          <h5 className="display-6 text-center mt-5 mt-xl-0">
             {subCategory.Result.CategoryName}
           </h5>
           {subCategory.Result.TopCategory.SubCategoryList.map((item, key) => (

@@ -3,8 +3,11 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import axios from "axios";
 import { object, string } from "yup";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export default function login() {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -39,6 +42,19 @@ export default function login() {
                   )
                   .then((response) => {
                     console.log(response);
+                    if (response.data.Success) {
+                      toast.success(
+                        `Sn. ${response.data.Result.FullName} giriş işleminiz başarılı.`,
+                        {
+                          position: "bottom-right",
+                        }
+                      );
+                      router.push("/");
+                    } else {
+                      toast.warn(`${response.data.Message}`, {
+                        position: "bottom-right",
+                      });
+                    }
                   })
                   .catch(function (error) {
                     // handle error

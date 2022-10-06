@@ -4,13 +4,17 @@ import "react-toastify/dist/ReactToastify.css";
 import Layout from "../components/Layout/Layout";
 import { AuthProvider } from "../contexts/AuthContext";
 import dynamic from "next/dynamic";
+import { Provider } from "react-redux";
+import { store } from "../redux/store";
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </AuthProvider>
   );
 }

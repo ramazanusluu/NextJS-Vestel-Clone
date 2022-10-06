@@ -7,8 +7,12 @@ import { useAuth } from "../../contexts/AuthContext";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { loggedIn, user } = useAuth();
+  const { loggedIn, user, logout } = useAuth();
   console.log("AuthContext user", user);
+
+  const handleLogout = async () => {
+    logout();
+  };
 
   return (
     <div>
@@ -103,7 +107,12 @@ function Header() {
                   <button className="btn btn-link btn-profile">
                     {user && user.Result.FullName}
                   </button>
-                  <button className="btn btn-link btn-logout">Çıkış Yap</button>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-link btn-logout"
+                  >
+                    Çıkış Yap
+                  </button>
                 </div>
               </>
             )}

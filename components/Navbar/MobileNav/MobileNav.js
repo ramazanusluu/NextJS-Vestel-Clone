@@ -8,7 +8,7 @@ function MobileNav({ open }) {
   const [isLoading, setLoading] = useState(false);
   const [selected, setSelected] = useState(null);
   const [altSelected, setAltSelected] = useState(null);
-  const { loggedIn, user } = useAuth();
+  const { loggedIn, user, logout } = useAuth();
 
   const toggle = (key) => {
     if (selected === key) {
@@ -22,6 +22,12 @@ function MobileNav({ open }) {
     }
     setAltSelected(i);
   };
+
+  const handleLogout = async () => {
+    open(false);
+    logout();
+  };
+
   useEffect(() => {
     setLoading(true);
     fetch("https://store.vrunibex.com/mobile2/mbProduct/CategoryList")
@@ -75,7 +81,7 @@ function MobileNav({ open }) {
                   </button>
                   <button
                     className="btn btn-link btn-logout"
-                    onClick={() => open(false)}
+                    onClick={handleLogout}
                   >
                     Çıkış Yap
                   </button>

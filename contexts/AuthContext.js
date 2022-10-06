@@ -19,10 +19,18 @@ const AuthProvider = ({ children }) => {
     setLoggedIn(true);
     setUser(data);
   };
+
+  const logout = () => {
+    setLoggedIn(false);
+    setUser(null);
+    localStorage.removeItem("user");
+  };
+
   const values = {
     loggedIn,
     user,
     login,
+    logout,
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

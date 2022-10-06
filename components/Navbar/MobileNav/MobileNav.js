@@ -8,7 +8,7 @@ function MobileNav({ open }) {
   const [isLoading, setLoading] = useState(false);
   const [selected, setSelected] = useState(null);
   const [altSelected, setAltSelected] = useState(null);
-  const { loggedIn } = useAuth();
+  const { loggedIn, user } = useAuth();
 
   const toggle = (key) => {
     if (selected === key) {
@@ -71,7 +71,7 @@ function MobileNav({ open }) {
                 <div className="mobil-info">
                   <i className="fa-regular fa-user me-2 mobil-user-icon"></i>
                   <button className="btn btn-link btn-mobil-profile">
-                    Ramazan USLU
+                    {user.Result.FullName}
                   </button>
                   <button
                     className="btn btn-link btn-logout"

@@ -1,12 +1,14 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Loading from "../../Loading/Loading";
+import { useAuth } from "../../../contexts/AuthContext";
 
 function MobileNav() {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [selected, setSelected] = useState(null);
   const [altSelected, setAltSelected] = useState(null);
+  const { loggedIn } = useAuth();
 
   const toggle = (key) => {
     if (selected === key) {
@@ -37,20 +39,37 @@ function MobileNav() {
     <div className="d-xl-none d-block">
       <div className="mobil-menubar">
         <div className="mobil-auth">
-          <ul className="nav justify-content-center mx-4">
-            <Link href="/auth/register">
-              <li className="nav-item header-item">
-                <span className="nav-link mobil-header-link first-element">
-                  YENİ ÜYE
-                </span>
-              </li>
-            </Link>
-            <Link href="/auth/login">
-              <li className="nav-item header-item">
-                <span className="nav-link mobil-header-link">ÜYE GİRİŞİ</span>
-              </li>
-            </Link>
-          </ul>
+          {!loggedIn && (
+            <>
+              <ul className="nav justify-content-center mx-4">
+                <Link href="/auth/register">
+                  <li className="nav-item header-item">
+                    <span className="nav-link mobil-header-link first-element">
+                      YENİ ÜYE
+                    </span>
+                  </li>
+                </Link>
+                <Link href="/auth/login">
+                  <li className="nav-item header-item">
+                    <span className="nav-link mobil-header-link">
+                      ÜYE GİRİŞİ
+                    </span>
+                  </li>
+                </Link>
+              </ul>
+            </>
+          )}
+          {loggedIn && (
+            <>
+              <div className="user-info my-auto">
+              <i className="fa-regular fa-user me-2 mobil-user-icon"></i>
+                  <button className="btn btn-link btn-mobil-profile">
+                  Ramazan USLU
+                </button>
+                <button className="btn btn-link btn-logout">Çıkış Yap</button>
+              </div>
+            </>
+          )}
         </div>
         <div>
           <div className="accordion">

@@ -5,11 +5,13 @@ import Link from "next/link";
 import MobileNav from "../Navbar/MobileNav/MobileNav";
 import { useAuth } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { loggedIn, user, logout } = useAuth();
   console.log("AuthContext user", user);
+  const router = useRouter();
 
   const handleLogout = async () => {
     logout();
@@ -18,6 +20,7 @@ function Header() {
         position: "bottom-right",
       });
     }
+    router.push("/auth/login");
   };
 
   return (

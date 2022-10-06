@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Loading from "../../Loading/Loading";
 import { useAuth } from "../../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 function MobileNav({ open }) {
   const [data, setData] = useState(null);
@@ -10,6 +11,7 @@ function MobileNav({ open }) {
   const [selected, setSelected] = useState(null);
   const [altSelected, setAltSelected] = useState(null);
   const { loggedIn, user, logout } = useAuth();
+  const router = useRouter();
 
   const toggle = (key) => {
     if (selected === key) {
@@ -30,6 +32,7 @@ function MobileNav({ open }) {
     toast.info(`Çıkış işlemi başarılı.`, {
       position: "bottom-right",
     });
+    router.push("/auth/login");
   };
 
   useEffect(() => {

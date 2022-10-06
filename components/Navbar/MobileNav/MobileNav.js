@@ -67,17 +67,19 @@ function MobileNav({ open }) {
           )}
           {loggedIn && (
             <>
-              <div className="user-info my-auto">
-                <i className="fa-regular fa-user me-2 mobil-user-icon"></i>
-                <button className="btn btn-link btn-mobil-profile">
-                  Ramazan USLU
-                </button>
-                <button
-                  className="btn btn-link btn-logout"
-                  onClick={() => open(false)}
-                >
-                  Çıkış Yap
-                </button>
+              <div className="mobil-user-info">
+                <div className="mobil-info">
+                  <i className="fa-regular fa-user me-2 mobil-user-icon"></i>
+                  <button className="btn btn-link btn-mobil-profile">
+                    Ramazan USLU
+                  </button>
+                  <button
+                    className="btn btn-link btn-logout"
+                    onClick={() => open(false)}
+                  >
+                    Çıkış Yap
+                  </button>
+                </div>
               </div>
             </>
           )}

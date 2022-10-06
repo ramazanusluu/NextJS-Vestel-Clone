@@ -3,9 +3,12 @@ import headerLogo from "../../public/images/header-logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import MobileNav from "../Navbar/MobileNav/MobileNav";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { loggedIn } = useAuth();
+
   return (
     <div>
       <nav className="navbar navbar-expand-xl fixed-top">
@@ -73,22 +76,35 @@ function Header() {
                 </button>
               </div>
             </div>
-            <ul className="nav justify-content-center mx-4 d-none d-xl-block">
-              <Link href="/auth/register">
-                <li className="nav-item header-item">
-                  <a className="nav-link header-link first-element">
-                    YENİ ÜYE
-                  </a>
-                </li>
-              </Link>
-              <Link href="/auth/login">
-              <li className="nav-item header-item">
-                <a className="nav-link header-link" >
-                  ÜYE GİRİŞİ
-                </a>
-              </li>
-              </Link>
-            </ul>
+            {!loggedIn && (
+              <>
+                <ul className="nav justify-content-center mx-4 d-none d-xl-block">
+                  <Link href="/auth/register">
+                    <li className="nav-item header-item">
+                      <a className="nav-link header-link first-element">
+                        YENİ ÜYE
+                      </a>
+                    </li>
+                  </Link>
+                  <Link href="/auth/login">
+                    <li className="nav-item header-item">
+                      <a className="nav-link header-link">ÜYE GİRİŞİ</a>
+                    </li>
+                  </Link>
+                </ul>
+              </>
+            )}
+            {loggedIn && (
+              <>
+                <div className="mx-4 d-none d-xl-block user-info">
+                  <i className="fa-regular fa-user me-2"></i>
+                  <button className="btn btn-link btn-profile">
+                    Ramazan USLU
+                  </button>
+                  <button className="btn btn-link btn-logout">Çıkış Yap</button>
+                </div>
+              </>
+            )}
             <div className="d-none d-xl-block">
               <div className="position-relative">
                 <i className="fa-solid fa-basket-shopping"></i>

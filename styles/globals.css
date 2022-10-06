@@ -15,3 +15,6 @@ font-family: 'Gotham Ultra', sans-serif;
 * {
   font-family: "Gotham Light", sans-serif;
 }
+.image-gallery-icon:hover {
+  color: #df2027;
+}

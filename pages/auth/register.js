@@ -165,6 +165,17 @@ export default function register() {
                 </Form>
               )}
             </Formik>
+            <div>
+              <h6>
+                Zaten üye misiniz? Üye girişi için{" "}
+                <span
+                  className="register-login"
+                  onClick={() => router.push("/auth/login")}
+                >
+                  tıklayınız
+                </span>
+              </h6>
+            </div>
           </div>
         </div>
       </div>

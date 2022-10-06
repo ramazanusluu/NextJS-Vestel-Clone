@@ -83,7 +83,7 @@ export default function login() {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="Password" className="form-label">
-                      ŞİFRENİZ
+                      ŞİFRE
                     </label>
                     <Field
                       id="Password"
@@ -101,6 +101,17 @@ export default function login() {
                 </Form>
               )}
             </Formik>
+            <div>
+              <h6>
+                Üye değil misiniz? üye olmak için{" "}
+                <span
+                  className="register-login"
+                  onClick={() => router.push("/auth/register")}
+                >
+                  tıklayınız
+                </span>
+              </h6>
+            </div>
           </div>
         </div>
       </div>

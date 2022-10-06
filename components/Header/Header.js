@@ -27,6 +27,7 @@ function Header() {
           <button
             id="btn-search"
             className="btn d-xl-none d-block buton input-group-text"
+            onClick={() => setIsOpen(false)}
           >
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -116,7 +117,9 @@ function Header() {
           </div>
         </div>
       </nav>
-      <div className="desktop-menu">{isOpen && <MobileNav />}</div>
+      <div className="desktop-menu">
+        {isOpen && <MobileNav open={setIsOpen} />}
+      </div>
     </div>
   );
 }

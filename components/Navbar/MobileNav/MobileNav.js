@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Loading from "../../Loading/Loading";
 import { useAuth } from "../../../contexts/AuthContext";
 
-function MobileNav() {
+function MobileNav({ open }) {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -43,14 +43,20 @@ function MobileNav() {
             <>
               <ul className="nav justify-content-center mx-4">
                 <Link href="/auth/register">
-                  <li className="nav-item header-item">
+                  <li
+                    className="nav-item header-item"
+                    onClick={() => open(false)}
+                  >
                     <span className="nav-link mobil-header-link first-element">
                       YENİ ÜYE
                     </span>
                   </li>
                 </Link>
                 <Link href="/auth/login">
-                  <li className="nav-item header-item">
+                  <li
+                    className="nav-item header-item"
+                    onClick={() => open(false)}
+                  >
                     <span className="nav-link mobil-header-link">
                       ÜYE GİRİŞİ
                     </span>
@@ -62,11 +68,16 @@ function MobileNav() {
           {loggedIn && (
             <>
               <div className="user-info my-auto">
-              <i className="fa-regular fa-user me-2 mobil-user-icon"></i>
-                  <button className="btn btn-link btn-mobil-profile">
+                <i className="fa-regular fa-user me-2 mobil-user-icon"></i>
+                <button className="btn btn-link btn-mobil-profile">
                   Ramazan USLU
                 </button>
-                <button className="btn btn-link btn-logout">Çıkış Yap</button>
+                <button
+                  className="btn btn-link btn-logout"
+                  onClick={() => open(false)}
+                >
+                  Çıkış Yap
+                </button>
               </div>
             </>
           )}
@@ -79,7 +90,12 @@ function MobileNav() {
                   <div className={selected === key ? "item show" : "item"}>
                     <div className="title">
                       <Link href={`/category/${item.ID}`}>
-                        <h2 className="mobil-menu-title">{item.DisplayName}</h2>
+                        <h2
+                          className="mobil-menu-title"
+                          onClick={() => open(false)}
+                        >
+                          {item.DisplayName}
+                        </h2>
                       </Link>
                       <span onClick={() => toggle(key)}>
                         {selected === key ? "-" : " +"}
@@ -142,7 +158,10 @@ function MobileNav() {
           <h6 className="header-text">Kampanyalar</h6>
           <h6 className="header-text">Vestel.com.tr Farkı</h6>
         </div>
-        <button className="btn btn-cart position-relative ms-3 mb-3">
+        <button
+          className="btn btn-cart position-relative ms-3 mb-3"
+          onClick={() => open(false)}
+        >
           <i className=" fa-solid fa-basket-shopping"></i>
           <span className="basket-items position-absolute top-100 start-100 translate-middle bg-warning border border-light badge rounded-pill rounded-circle">
             1

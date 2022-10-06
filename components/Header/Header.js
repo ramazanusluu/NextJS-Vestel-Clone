@@ -7,7 +7,8 @@ import { useAuth } from "../../contexts/AuthContext";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { loggedIn } = useAuth();
+  const { loggedIn, user } = useAuth();
+  console.log("AuthContext user", user);
 
   return (
     <div>
@@ -100,7 +101,7 @@ function Header() {
                 <div className="mx-4 d-none d-xl-block user-info">
                   <i className="fa-regular fa-user me-2"></i>
                   <button className="btn btn-link btn-profile">
-                    Ramazan USLU
+                    {user.Result.FullName}
                   </button>
                   <button className="btn btn-link btn-logout">Çıkış Yap</button>
                 </div>

@@ -1,7 +1,28 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
+import ProductCard from "../components/Products/Product/List/ProductCard/ProductCard";
+import Loading from "../components/Loading/Loading";
 
 export default function search() {
+  const [search, setSearch] = useState("");
+  const [result, setResult] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+
+  const handleSearch = async () => {
+    setLoading(true);
+    await fetch(
+      `https://www.vestel.com.tr/mobile2/mbProduct/ProductSearch?searchKey=${search}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setResult(data);
+        setLoading(false);
+      });
+  };
+
+  if (isLoading) return <Loading />;
+
+  console.log("result", result);
   return (
     <>
       <Head>
@@ -11,16 +32,41 @@ export default function search() {
       </Head>
       <div className="container">
         <div className="row">
-          <div className="col-xl-6 mx-auto my-3">
-            <div className="input-group mb-3">
+          <div className="col-xl-12 mx-auto my-4">
+            <div className="input-group mb-4">
               <input
                 type="text"
                 className="form-control search-input"
                 placeholder="Ürün, kategori, servis, mağaza ara"
+                onChange={(e) => setSearch(e.target.value)}
               />
-              <button className="btn search-button" type="button">
+              <button
+                className="btn search-button"
+                type="button"
+                onClick={() => handleSearch()}
+              >
                 Ara
               </button>
+            </div>
+            <div>
+              {result && (
+                <>
+                  <div className="container my-5 px-xl-5">
+                    <div className="row">
+                      {result.Success && <h1>"{search}" Arama sonucu</h1>}
+                      {result.Success &&
+                        result.Result.ProductList.map((item, key) => (
+                          <ProductCard key={key} item={item} />
+                        ))}
+                    </div>
+                    <div>
+                      {!result.Success && (
+                        <h3 className="text-center mt-5">{result.Message}</h3>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

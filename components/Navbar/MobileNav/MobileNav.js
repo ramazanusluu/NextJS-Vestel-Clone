@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Loading from "../../Loading/Loading";
 import { useAuth } from "../../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 function MobileNav({ open }) {
   const [data, setData] = useState(null);
@@ -26,6 +27,9 @@ function MobileNav({ open }) {
   const handleLogout = async () => {
     open(false);
     logout();
+    toast.info(`Çıkış işlemi başarılı.`, {
+      position: "bottom-right",
+    });
   };
 
   useEffect(() => {

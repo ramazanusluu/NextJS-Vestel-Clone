@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MobileNav from "../Navbar/MobileNav/MobileNav";
 import { useAuth } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,11 @@ function Header() {
 
   const handleLogout = async () => {
     logout();
+    if (logout) {
+      toast.info(`Çıkış işlemi başarılı.`, {
+        position: "bottom-right",
+      });
+    }
   };
 
   return (

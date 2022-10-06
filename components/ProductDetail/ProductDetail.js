@@ -2,6 +2,9 @@ import React from "react";
 import ImageGallery from "react-image-gallery";
 import { useDispatch } from "react-redux";
 import { addToCard } from "../../redux/card/cardSlice";
+import { useRouter } from "next/router";
+import { useAuth } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 function ProductDetail({ data }) {
   const images = data.Result.ImageSetList?.map((item) => ({
@@ -9,9 +12,31 @@ function ProductDetail({ data }) {
   }));
   const item = data.Result;
 
+  const router = useRouter();
+
+  const { loggedIn } = useAuth();
+
   const dispatch = useDispatch();
+
   const handleAddToCard = (item) => {
-    dispatch(addToCard(item));
+    if (loggedIn) {
+      dispatch(addToCard(item));
+    } else {
+      router.push("/auth/login");
+      toast.warning(`Sepete ürün ekleyebilmek için önce giriş yapın.`, {
+        position: "bottom-right",
+      });
+    }
+  };
+
+  const handleStok = () => {
+    if (loggedIn) {
+      toast.info(`Ürün geldiğinde SMS ile bilgilendirileceksiniz.`, {
+        position: "bottom-right",
+      });
+    } else {
+      router.push("/auth/login");
+    }
   };
 
   return (
@@ -72,7 +97,9 @@ function ProductDetail({ data }) {
                   </div>
                 ) : (
                   <div className="my-2">
-                    <button className="quantity">STOK GELİNCE HABER VER</button>
+                    <button className="quantity" onClick={() => handleStok()}>
+                      STOK GELİNCE HABER VER
+                    </button>
                   </div>
                 )}
               </div>

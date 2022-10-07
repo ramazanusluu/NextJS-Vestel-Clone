@@ -1,6 +1,10 @@
 import React from "react";
+import Link from "next/link";
+import { useBasket } from "../../../contexts/BasketContext";
+import Image from "next/image";
 
 function BasketItem() {
+  const { items } = useBasket();
   return (
     <>
       <h4 className="basket-item-title">SEPETİM</h4>
@@ -19,13 +23,43 @@ function BasketItem() {
           Toplam
         </div>
       </div>
-      <div className="row">
-        <div className="col-lg-3 text-center">Resim</div>
-        <div className="col-lg-4 text-center">Bilgi</div>
-        <div className="col-lg-2 text-center">Adet</div>
-        <div className="col-lg-2 text-center">Toplam</div>
-        <div className="col-lg-1 text-center">Temizle</div>
-      </div>
+      {items.card.map((item) => (
+        <div key={item.ID} className="row">
+          <div className="col-lg-3 d-flex align-items-center justify-content-center">
+            <Image
+              src={item.FirstProductImageURL}
+              alt="ProductType"
+              width={130}
+              height={130}
+              className="img-top-fluid"
+            />
+          </div>
+          <div className="col-lg-4 d-flex align-items-center justify-content-center">
+            <Link href={`/category/products/product-detail/${item.ID}`}>
+              <h5 className="card-item-name">{item.DisplayName}</h5>
+            </Link>
+          </div>
+          <div className="col-lg-2 d-flex align-items-center justify-content-center">
+            <div className="btn-group">
+              <button className="btn btn-piece" onClick={() => {}}>
+                <i className="fa-solid fa-minus"></i>
+              </button>
+              <button className="btn btn-item-quantity">
+                {item.cardQuantity}
+              </button>
+              <button className="btn btn-piece" onClick={() => {}}>
+                <i className="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div className="col-lg-2 d-flex align-items-center justify-content-center">
+            Toplam
+          </div>
+          <div className="col-lg-1 text-center text-xl-start">
+            <i className="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+      ))}
     </>
   );
 }

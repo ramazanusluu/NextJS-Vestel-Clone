@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { useAuth } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
-import { useBasket } from "../../contexts/Basket.Context";
+import { useBasket } from "../../contexts/BasketContext";
 
 function ProductDetail({ data }) {
   const { addToBasket } = useBasket();

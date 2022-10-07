@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext } from "react";
+import { toast } from "react-toastify";
 
 const BasketContext = createContext();
 
@@ -43,12 +44,11 @@ const BasketProvider = ({ children }) => {
   const increase = (id) => {
     setItems({
       ...items,
-      card: items.card.map(
-        (cardItem) =>
-          cardItem.ID === id &&
-          cardItem.count < cardItem.SelectionList[0].OptionList[0].Quantity
-            ? { ...cardItem, count: cardItem.count + 1 }
-            : cardItem,
+      card: items.card.map((cardItem) =>
+        cardItem.ID === id &&
+        cardItem.count < cardItem.SelectionList[0].OptionList[0].Quantity
+          ? { ...cardItem, count: cardItem.count + 1 }
+          : cardItem
       ),
     });
   };

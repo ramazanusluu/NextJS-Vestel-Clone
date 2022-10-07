@@ -6,7 +6,7 @@ import { AuthProvider } from "../contexts/AuthContext";
 import dynamic from "next/dynamic";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
-import { BasketProvider } from "../contexts/Basket.Context";
+import { BasketProvider } from "../contexts/BasketContext";
 
 function MyApp({ Component, pageProps }) {
   return (

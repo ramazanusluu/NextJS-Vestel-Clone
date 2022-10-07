@@ -4,7 +4,11 @@ import { useBasket } from "../../../contexts/BasketContext";
 import Image from "next/image";
 
 function BasketItem() {
-  const { items } = useBasket();
+  const { items, removeFromBasket } = useBasket();
+
+  const handleRemoveFromCard = (item) => {
+    removeFromBasket(item);
+  };
   return (
     <>
       <h4 className="basket-item-title">SEPETİM</h4>
@@ -61,7 +65,10 @@ function BasketItem() {
             </h6>
           </div>
           <div className="col-lg-1 text-center text-xl-start ">
-            <i className="fa-solid fa-xmark item-delete"></i>
+            <i
+              className="fa-solid fa-xmark item-delete"
+              onClick={() => handleRemoveFromCard(item)}
+            ></i>
           </div>
         </div>
       ))}

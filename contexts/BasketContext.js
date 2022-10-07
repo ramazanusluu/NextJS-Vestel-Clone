@@ -40,14 +40,20 @@ const BasketProvider = ({ children }) => {
         position: "bottom-right",
       });
     }
-    localStorage.setItem("basket", JSON.stringify(items));
   };
 
-  const removeFromBasket = (id) =>
+  const removeFromBasket = (data) => {
+    const nextCardItems = items.card.filter(
+      (cardItem) => cardItem.ID !== data.ID
+    );
     setItems({
       ...items,
-      card: items.card.filter((cardItem) => cardItem.ID !== id),
+      card: nextCardItems,
     });
+    toast.error(`${data.DisplayName}, sepetten çıkarıldı.`, {
+      position: "bottom-right",
+    });
+  };
 
   const increase = (id) => {
     setItems({

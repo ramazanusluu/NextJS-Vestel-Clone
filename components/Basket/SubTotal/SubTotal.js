@@ -10,6 +10,10 @@ function SubTotal() {
       (total = total + item.ActualPriceToShowOnScreen * item.cardQuantity),
     0
   );
+  const totalCardCount = items.card.reduce(
+    (total, item) => (total = total + item.cardQuantity),
+    0
+  );
 
   console.log("totalCardAmount", totalCardAmount);
   return (
@@ -17,7 +21,7 @@ function SubTotal() {
       <h5 className="basket-item-title">SİPARİŞ ÖZETİ</h5>
       <div>
         <i className="fa-solid fa-cart-shopping"></i>
-        <span className="fs-6"> Toplam ürün</span>
+        <span className="fs-6"> Toplam {totalCardCount} ürün</span>
       </div>
       <div className="total-price mt-3">
         <span className="label">Ödenecek Tutar</span>

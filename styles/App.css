@@ -809,6 +809,7 @@ a {
   font-weight: 700 !important;
   font-size: 14px;
   color: #293033 !important;
+  cursor: pointer;
 }
 .btn-piece {
   border: none !important;

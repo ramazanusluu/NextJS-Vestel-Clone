@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MobileNav from "../Navbar/MobileNav/MobileNav";
 import { useAuth } from "../../contexts/AuthContext";
+import { useBasket } from "../../contexts/BasketContext";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
@@ -12,6 +13,8 @@ function Header() {
   const { loggedIn, user, logout } = useAuth();
   console.log("AuthContext user", user);
   const router = useRouter();
+
+  const { items } = useBasket();
 
   const handleLogout = async () => {
     logout();
@@ -132,11 +135,11 @@ function Header() {
               </>
             )}
             <Link href="/card">
-              <div className="d-none d-xl-block">
+              <div className="d-none d-xl-block shopping-card">
                 <div className="position-relative">
                   <i className="fa-solid fa-basket-shopping"></i>
                   <span className="basket-items position-absolute top-100 start-100 translate-middle badge rounded-pill rounded-circle">
-                    0
+                    {items.card.length}
                   </span>
                 </div>
               </div>

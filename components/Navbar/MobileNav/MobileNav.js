@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Loading from "../../Loading/Loading";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useBasket } from "../../../contexts/BasketContext";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
@@ -12,6 +13,7 @@ function MobileNav({ open }) {
   const [altSelected, setAltSelected] = useState(null);
   const { loggedIn, user, logout } = useAuth();
   const router = useRouter();
+  const { items } = useBasket();
 
   const toggle = (key) => {
     if (selected === key) {
@@ -180,7 +182,7 @@ function MobileNav({ open }) {
           >
             <i className=" fa-solid fa-basket-shopping"></i>
             <span className="basket-items position-absolute top-100 start-100 translate-middle bg-warning border border-light badge rounded-pill rounded-circle">
-              1
+              {items.card.length}
             </span>
           </button>
         </Link>

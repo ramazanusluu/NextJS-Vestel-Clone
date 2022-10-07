@@ -80,6 +80,7 @@
 /* ShoppingCard icon */
 .shopping-card {
   color: #404040 !important;
+  cursor: pointer;
 }
 .shopping-card:hover {
   color: black !important;

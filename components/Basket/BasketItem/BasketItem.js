@@ -2,9 +2,13 @@ import React from "react";
 
 function BasketItem() {
   return (
-    <div>
-      <h1>BasketItem component</h1>
-    </div>
+    <>
+      <h4 className="basket-item-title">SEPETİM</h4>
+      <h5 className="basket-item-info">
+        Sepetiniz hazır ise <span>Ödeme Sayfasına Devam Et</span> butonuna
+        tıklayarak işleminizi tamamlayabilirsiniz.
+      </h5>
+    </>
   );
 }
 

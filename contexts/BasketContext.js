@@ -55,24 +55,11 @@ const BasketProvider = ({ children }) => {
     });
   };
 
-  const increase = (id) => {
-    setItems({
-      ...items,
-      card: items.card.map((cardItem) =>
-        cardItem.ID === id &&
-        cardItem.count < cardItem.SelectionList[0].OptionList[0].Quantity
-          ? { ...cardItem, count: cardItem.count + 1 }
-          : cardItem
-      ),
-    });
-  };
-
   const decrease = (data) => {
     const itemIndex = items.card.findIndex(
       (cardItem) => cardItem.ID === data.ID
     );
     if (items.card[itemIndex].cardQuantity > 1) {
-      items.card[itemIndex].cardQuantity -= 1;
       setItems({
         ...items,
         card: items.card.map((cardItem) =>
@@ -100,6 +87,37 @@ const BasketProvider = ({ children }) => {
         position: "bottom-right",
       });
     }
+  };
+
+  const increase = (data) => {
+    items.card.map((cardItem) => {
+      if (
+        cardItem.ID === data.ID &&
+        cardItem.cardQuantity < cardItem.SelectionList[0].OptionList[0].Quantity
+      ) {
+        setItems({
+          ...items,
+          card: items.card.map((cardItem) =>
+            cardItem.ID === data.ID &&
+            cardItem.cardQuantity < cardItem.SelectionList[0].OptionList[0].Quantity
+              ? { ...cardItem, cardQuantity: cardItem.cardQuantity + 1 }
+              : cardItem
+          ),
+        });
+        toast.info(`${data.DisplayName}, miktarı 1 arttırıldı.`, {
+          position: "bottom-right",
+        });
+      } else if (
+        cardItem.ID === data.ID &&
+        cardItem.cardQuantity ===
+          cardItem.SelectionList[0].OptionList[0].Quantity
+      ) {
+        toast.error(`${data.DisplayName}, stokta kalmadı`, {
+          position: "bottom-right",
+        });
+      }
+      return true;
+    });
   };
 
   const values = {

@@ -4,13 +4,16 @@ import { useBasket } from "../../../contexts/BasketContext";
 import Image from "next/image";
 
 function BasketItem() {
-  const { items, removeFromBasket, decrease } = useBasket();
+  const { items, removeFromBasket, decrease, increase } = useBasket();
 
   const handleRemoveFromCard = (item) => {
     removeFromBasket(item);
   };
   const handleDecreaseCard = (item) => {
     decrease(item);
+  };
+  const handleIncreaseCard = (item) => {
+    increase(item);
   };
   return (
     <>
@@ -57,7 +60,10 @@ function BasketItem() {
               <button className="btn btn-item-quantity">
                 {item.cardQuantity}
               </button>
-              <button className="btn btn-piece" onClick={() => {}}>
+              <button
+                className="btn btn-piece"
+                onClick={() => handleIncreaseCard(item)}
+              >
                 <i className="fa-solid fa-plus"></i>
               </button>
             </div>

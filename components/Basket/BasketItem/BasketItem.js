@@ -4,10 +4,13 @@ import { useBasket } from "../../../contexts/BasketContext";
 import Image from "next/image";
 
 function BasketItem() {
-  const { items, removeFromBasket } = useBasket();
+  const { items, removeFromBasket, decrease } = useBasket();
 
   const handleRemoveFromCard = (item) => {
     removeFromBasket(item);
+  };
+  const handleDecreaseCard = (item) => {
+    decrease(item);
   };
   return (
     <>
@@ -45,7 +48,10 @@ function BasketItem() {
           </div>
           <div className="col-lg-2 d-flex align-items-center justify-content-center">
             <div className="btn-group">
-              <button className="btn btn-piece" onClick={() => {}}>
+              <button
+                className="btn btn-piece"
+                onClick={() => handleDecreaseCard(item)}
+              >
                 <i className="fa-solid fa-minus"></i>
               </button>
               <button className="btn btn-item-quantity">

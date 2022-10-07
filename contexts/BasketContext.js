@@ -67,15 +67,39 @@ const BasketProvider = ({ children }) => {
     });
   };
 
-  const decrease = (id) => {
-    setItems({
-      ...items,
-      card: items.card.map((cardItem) =>
-        cardItem.ID === id
-          ? { ...cardItem, count: cardItem.count > 1 ? cardItem.count - 1 : 1 }
-          : cardItem
-      ),
-    });
+  const decrease = (data) => {
+    const itemIndex = items.card.findIndex(
+      (cardItem) => cardItem.ID === data.ID
+    );
+    if (items.card[itemIndex].cardQuantity > 1) {
+      items.card[itemIndex].cardQuantity -= 1;
+      setItems({
+        ...items,
+        card: items.card.map((cardItem) =>
+          cardItem.ID === data.ID
+            ? {
+                ...cardItem,
+                cardQuantity:
+                  cardItem.cardQuantity > 1 ? cardItem.cardQuantity - 1 : 1,
+              }
+            : cardItem
+        ),
+      });
+      toast.info(`${data.DisplayName}, mikarı 1 azaltıldı.`, {
+        position: "bottom-right",
+      });
+    } else if (items.card[itemIndex].cardQuantity === 1) {
+      const nextCardItems = items.card.filter(
+        (cardItem) => cardItem.ID !== data.ID
+      );
+      setItems({
+        ...items,
+        card: nextCardItems,
+      });
+      toast.error(`${data.DisplayName}, sepetten çıkarıldı.`, {
+        position: "bottom-right",
+      });
+    }
   };
 
   const values = {

@@ -1,7 +1,17 @@
 import React from "react";
 import Link from "next/link";
+import { useBasket } from "../../../contexts/BasketContext";
 
 function SubTotal() {
+  const { items } = useBasket();
+
+  const totalCardAmount = items.card.reduce(
+    (total, item) =>
+      (total = total + item.ActualPriceToShowOnScreen * item.cardQuantity),
+    0
+  );
+
+  console.log("totalCardAmount", totalCardAmount);
   return (
     <div className="sub-total">
       <h5 className="basket-item-title">SİPARİŞ ÖZETİ</h5>
@@ -11,11 +21,15 @@ function SubTotal() {
       </div>
       <div className="total-price mt-3">
         <span className="label">Ödenecek Tutar</span>
-        <span className="label-price">2000000 TL</span>
+        <span className="label-price">
+          {totalCardAmount > 1000 ? totalCardAmount / 1000 : totalCardAmount} TL
+        </span>
       </div>
       <div className="total-price mt-3">
         <span className="label">Ürünler</span>
-        <span className="label-price">0 TL</span>
+        <span className="label-price">
+          {totalCardAmount > 1000 ? totalCardAmount / 1000 : totalCardAmount} TL
+        </span>
       </div>
       <div className="total-price mt-3">
         <span className="label">Kargo Ücreti</span>

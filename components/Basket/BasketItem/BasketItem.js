@@ -53,7 +53,12 @@ function BasketItem() {
             </div>
           </div>
           <div className="col-lg-2 d-flex align-items-center justify-content-center">
-            Toplam
+            <h6 className="item-price">
+              {item.ActualPriceToShowOnScreen * item.cardQuantity > 1000
+                ? (item.ActualPriceToShowOnScreen * item.cardQuantity) / 1000
+                : item.ActualPriceToShowOnScreen * item.cardQuantity}{" "}
+              TL
+            </h6>
           </div>
           <div className="col-lg-1 text-center text-xl-start">
             <i className="fa-solid fa-xmark"></i>

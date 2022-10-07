@@ -1,5 +1,6 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
+import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import DesktopNav from "../Navbar/DesktopNav/DesktopNav";
 
@@ -10,6 +11,7 @@ function Layout({ children }) {
       <Header />
       <DesktopNav />
       <div>{children}</div>
+      <Footer />
     </div>
   );
 }

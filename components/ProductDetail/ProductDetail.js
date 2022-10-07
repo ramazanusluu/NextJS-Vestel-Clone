@@ -1,12 +1,14 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import { useDispatch } from "react-redux";
-import { addToCard } from "../../redux/card/cardSlice";
 import { useRouter } from "next/router";
 import { useAuth } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import { useBasket } from "../../contexts/Basket.Context";
 
 function ProductDetail({ data }) {
+  const { addToBasket } = useBasket();
+
   const images = data.Result.ImageSetList?.map((item) => ({
     original: item.ImageList[0]?.Path,
   }));
@@ -20,7 +22,7 @@ function ProductDetail({ data }) {
 
   const handleAddToCard = (item) => {
     if (loggedIn) {
-      dispatch(addToCard(item));
+      addToBasket(item);
     } else {
       router.push("/auth/login");
       toast.warning(`Sepete ürün ekleyebilmek için önce giriş yapın.`, {

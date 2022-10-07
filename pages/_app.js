@@ -6,15 +6,18 @@ import { AuthProvider } from "../contexts/AuthContext";
 import dynamic from "next/dynamic";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
+import { BasketProvider } from "../contexts/Basket.Context";
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
+      <BasketProvider>
+        <Provider store={store}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
+      </BasketProvider>
     </AuthProvider>
   );
 }

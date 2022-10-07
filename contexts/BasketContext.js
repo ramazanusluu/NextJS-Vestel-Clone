@@ -23,17 +23,25 @@ const BasketProvider = ({ children }) => {
     localStorage.setItem("basket", JSON.stringify(items));
   }, [items]);
 
-  const addToBasket = (data) =>
-    setItems({
-      ...items,
-      card: items.card.find((cardItem) => cardItem.ID === data.ID)
-        ? items.card.map((cardItem) =>
-            cardItem.ID === data.ID
-              ? { ...cardItem, count: cardItem.count + 1 }
-              : cardItem
-          )
-        : [...items.card, { ...data, count: 1 }],
-    });
+  const addToBasket = (data) => {
+    const itemIndex = items.card.findIndex((item) => item.ID === data.ID);
+    if (itemIndex >= 0) {
+      items.card[itemIndex].cardQuantity += 1;
+      toast.info(
+        `${items.card[itemIndex]?.DisplayName}, miktarı 1 arttırıldı.`,
+        {
+          position: "bottom-right",
+        }
+      );
+    } else {
+      const tempProduct = { ...data, cardQuantity: 1 };
+      items.card.push(tempProduct);
+      toast.success(`${data?.DisplayName}, sepete eklendi.`, {
+        position: "bottom-right",
+      });
+    }
+    localStorage.setItem("basket", JSON.stringify(items));
+  };
 
   const removeFromBasket = (id) =>
     setItems({

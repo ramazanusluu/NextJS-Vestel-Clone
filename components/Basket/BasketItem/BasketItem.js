@@ -4,7 +4,8 @@ import { useBasket } from "../../../contexts/BasketContext";
 import Image from "next/image";
 
 function BasketItem() {
-  const { items, removeFromBasket, decrease, increase } = useBasket();
+  const { items, removeFromBasket, decrease, increase, clearBasket } =
+    useBasket();
 
   const handleRemoveFromCard = (item) => {
     removeFromBasket(item);
@@ -14,6 +15,10 @@ function BasketItem() {
   };
   const handleIncreaseCard = (item) => {
     increase(item);
+  };
+
+  const handleClearCard = () => {
+    clearBasket();
   };
   return (
     <>
@@ -84,7 +89,10 @@ function BasketItem() {
           </div>
         </div>
       ))}
-      <button className="btn-basket-clear my-5">
+      <button
+        className="btn-basket-clear my-5"
+        onClick={() => handleClearCard()}
+      >
         <i className="fa-regular fa-circle-xmark me-1"></i>SEPETİ BOŞALT
       </button>
     </>

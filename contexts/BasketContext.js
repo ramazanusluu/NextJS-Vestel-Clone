@@ -99,7 +99,8 @@ const BasketProvider = ({ children }) => {
           ...items,
           card: items.card.map((cardItem) =>
             cardItem.ID === data.ID &&
-            cardItem.cardQuantity < cardItem.SelectionList[0].OptionList[0].Quantity
+            cardItem.cardQuantity <
+              cardItem.SelectionList[0].OptionList[0].Quantity
               ? { ...cardItem, cardQuantity: cardItem.cardQuantity + 1 }
               : cardItem
           ),
@@ -120,6 +121,15 @@ const BasketProvider = ({ children }) => {
     });
   };
 
+  const clearBasket = () => {
+    setItems({
+      card: [],
+    });
+    toast.success("Alışveriş sepeti Temizlendi", {
+      position: "bottom-right",
+    });
+  };
+
   const values = {
     items,
     setItems,
@@ -127,6 +137,7 @@ const BasketProvider = ({ children }) => {
     increase,
     decrease,
     removeFromBasket,
+    clearBasket,
   };
 
   return (
